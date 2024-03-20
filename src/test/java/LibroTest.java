@@ -68,4 +68,28 @@ public class LibroTest {
         Libro resultado = libroDAO.eliminarLibro(libro);
         assertEquals(true, resultado);
     }
+    
+    @Test
+    public void testBuscarLibroTitulo(){
+        Libro libro = new Libro();
+        LibroDAO libroDAO = new LibroDAO();
+        Libro resultado = libroDAO.buscarLibroTitulo(libro.getTitulo());
+        assertEquals(true, resultado);
+    }
+    
+     @Test
+    public void testBuscarLibroAutor(){
+        Libro libro = new Libro();
+        LibroDAO libroDAO = new LibroDAO();
+        Libro resultado = libroDAO.buscarLibroAutor(libro.getAutor());
+        assertEquals(true, resultado);
+    }
+    
+     @Test
+    public void testBuscarLibroIdentificador(){
+        Libro libro = new Libro();
+        LibroDAO libroDAO = new LibroDAO();
+        Libro resultado = libroDAO.buscarLibroIdentificador(libro.getId());
+        assertEquals(true, resultado);
+    }
 }

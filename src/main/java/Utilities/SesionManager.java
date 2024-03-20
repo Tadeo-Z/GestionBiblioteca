@@ -11,5 +11,10 @@ import org.itson.interfaces.ISesionManager;
  * @author HP 240 G8
  */
 public class SesionManager implements ISesionManager {
+
+    @Override
+    public boolean autenticarUsuario(String user, String password) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

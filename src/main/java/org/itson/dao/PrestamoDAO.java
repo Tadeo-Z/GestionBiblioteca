@@ -17,5 +17,10 @@ public class PrestamoDAO implements IPrestamo{
     public Prestamo registrarPrestamo(Prestamo prestamo) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public Prestamo liberarPrestamo(Prestamo prestamo) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

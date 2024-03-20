@@ -53,4 +53,13 @@ public class PrestamoTest {
         Prestamo resultado = prestamoDAO.registrarPrestamo(prestamo);
         assertEquals(true, resultado);
     }
+    
+    public void testLiberarPrestamo(){
+        Usuario usuario = new Usuario();
+        Libro libro = new Libro();
+        Prestamo prestamo = new Prestamo();
+        PrestamoDAO prestamoDAO = new PrestamoDAO();
+        Prestamo resultado = prestamoDAO.liberarPrestamo(prestamo);
+        assertEquals(true, resultado);
+    }
 }

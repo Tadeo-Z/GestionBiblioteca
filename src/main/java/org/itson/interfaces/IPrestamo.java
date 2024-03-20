@@ -13,5 +13,6 @@ import org.itson.dominio.Prestamo;
 public interface IPrestamo {
     
     public Prestamo registrarPrestamo(Prestamo prestamo);
+    public Prestamo liberarPrestamo(Prestamo prestamo);
     
 }

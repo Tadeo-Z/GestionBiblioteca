@@ -15,5 +15,7 @@ public interface ILibro {
     public Libro registrarLibro(Libro libro);
     public Libro actualizarLibro(Libro libro);
     public Libro eliminarLibro(Libro libro);
-    
+    public Libro buscarLibroTitulo(String titulo);
+    public Libro buscarLibroAutor(String autor);
+    public Libro buscarLibroIdentificador(String id);
 }
