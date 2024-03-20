@@ -14,12 +14,12 @@ import org.itson.interfaces.IUsuario;
 public class UsuarioDAO implements IUsuario{
 
     @Override
-    public Usuario registrarUsuario(Usuario usuario) {
+    public Boolean registrarUsuario(Usuario usuario) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Usuario actualizarUsuario(Usuario usuario) {
+    public Boolean actualizarUsuario(Usuario usuario) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     

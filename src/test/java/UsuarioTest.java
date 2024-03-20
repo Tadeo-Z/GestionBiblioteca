@@ -3,11 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
  */
 
+import Utilities.SesionManager;
+import java.util.function.BooleanSupplier;
 import org.itson.dao.UsuarioDAO;
 import org.itson.dominio.Usuario;
+import org.itson.interfaces.ISesionManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -60,19 +65,53 @@ public class UsuarioTest {
     // public void hello() {}
     
     @Test
-    public void testRegistrarUsuario(){
-        Usuario usuario = new Usuario();
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        Usuario resultado = usuarioDAO.registrarUsuario(usuario);
-        assertEquals(true, resultado);
+    public void testAutenticacionDeUsuariosNoRegistrados() {
+        // Prueba de autenticación de usuarios
+        ISesionManager sesionManager = new SesionManager();
+        assertFalse(sesionManager.autenticarUsuario("usuario", "contraseña")); // Usuario no registrado
     }
     
     @Test
-    public void testActualizarUsuario(){
-        Usuario usuario = new Usuario();
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        usuarioDAO.registrarUsuario(usuario);
-        Usuario resultado = usuarioDAO.actualizarUsuario(usuario);
-        assertEquals(true, resultado);
+    public void testAutenticacionDeUsuariosRegistrados() {
+        // Prueba de autenticación de usuarios
+        ISesionManager sesionManager = new SesionManager();
+        assertTrue(sesionManager.autenticarUsuario("usuario", "contraseña")); // Usuario registrado, Contraseña correcta
     }
+    
+    @Test
+    public void testAutenticacionDeUsuariosErronea() {
+        // Prueba de autenticación de usuarios
+        ISesionManager sesionManager = new SesionManager();
+        assertFalse(sesionManager.autenticarUsuario("usuario", "contraseña")); // Usuario registrado, Contraseña incorrecta
+    }
+        
+    @Test
+    public void testRegistrarUsuario(){
+        Usuario usuario = new Usuario("Nombre","Contraseña");
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        assertTrue(usuarioDAO.registrarUsuario(usuario));
+    }
+    
+    @Test
+    public void testRegistrarUsuarioNull(){
+        Usuario usuario = null;
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        assertFalse(usuarioDAO.registrarUsuario(usuario));
+    }
+    
+    @Test
+    public void testActualizarNombreUsuario(){
+        Usuario usuario = new Usuario("Nombre","Contraseña");
+        usuario.setNombre("New nombre");
+        assertEquals(usuario.getNombre(),"New nombre");
+    }
+    
+    @Test
+    public void testActualizarPasswordUsuario(){
+        Usuario usuario = new Usuario("Nombre","Contraseña");
+        usuario.setContrasena("New contraseña");
+        assertEquals(usuario.getNombre(),"New contraseña");
+    }
+    
+    
 }

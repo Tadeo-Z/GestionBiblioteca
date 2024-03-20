@@ -4,14 +4,11 @@
  */
 package org.itson.interfaces;
 
-import org.itson.dominio.Usuario;
-
 /**
  *
- * @author TADEO
+ * @author HP 240 G8
  */
-public interface IUsuario {
+public interface ISesionManager {
+    public boolean autenticarUsuario(String user, String password);
     
-    public Boolean registrarUsuario(Usuario usuario);
-    public Boolean actualizarUsuario(Usuario usuario);
 }
