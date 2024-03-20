@@ -60,10 +60,19 @@ public class UsuarioTest {
     // public void hello() {}
     
     @Test
-    public void testTegistrarUsuario(){
-        Usuario usuario = new Usuario("Tadoe", "123");
+    public void testRegistrarUsuario(){
+        Usuario usuario = new Usuario();
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         Usuario resultado = usuarioDAO.registrarUsuario(usuario);
+        assertEquals(true, resultado);
+    }
+    
+    @Test
+    public void testActualizarUsuario(){
+        Usuario usuario = new Usuario();
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        usuarioDAO.registrarUsuario(usuario);
+        Usuario resultado = usuarioDAO.actualizarUsuario(usuario);
         assertEquals(true, resultado);
     }
 }
