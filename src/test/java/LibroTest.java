@@ -36,12 +36,6 @@ public class LibroTest {
     @AfterEach
     public void tearDown() {
     }
-
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
     
     @Test
     public void testRegistrarLibro(){
@@ -89,7 +83,7 @@ public class LibroTest {
     public void testBuscarLibroIdentificador(){
         Libro libro = new Libro();
         LibroDAO libroDAO = new LibroDAO();
-        Libro resultado = libroDAO.buscarLibroIdentificador(libro.getId());
+        Libro resultado = libroDAO.buscarLibroIdentificador(libro.getIdentificador());
         assertEquals(true, resultado);
     }
 }

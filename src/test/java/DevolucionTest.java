@@ -50,8 +50,7 @@ public class DevolucionTest {
     public void testRegistrarDevolucion(){
         Usuario usuario = new Usuario();
         Libro libro = new Libro();
-        Prestamo prestamo = new Prestamo();
-        Devolucion devolucion = new Devolucion(libro, usuario, prestamo);
+        Devolucion devolucion = new Devolucion(libro, usuario);
         DevolucionDAO devolucionDAO = new DevolucionDAO();
         Devolucion resultado = devolucionDAO.registrarDevolucion(devolucion);
         assertEquals(true, resultado);

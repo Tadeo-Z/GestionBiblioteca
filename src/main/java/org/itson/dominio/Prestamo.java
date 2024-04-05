@@ -3,35 +3,44 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package org.itson.dominio;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.Column;
 
-/**
- *
- * @author TADEO
- */
-public class Prestamo {
+@Entity
+public class Prestamo{
 
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_prestamo")
+    private Long id;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_libro")
     private Libro libro;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
     public Prestamo() {
     }
 
-    public Prestamo(String id) {
-        this.id = id;
-    }
-    
-    public Prestamo(String id, Libro libro, Usuario usuario) {
+    public Prestamo(Long id, Libro libro, Usuario usuario) {
         this.id = id;
         this.libro = libro;
         this.usuario = usuario;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -53,7 +62,10 @@ public class Prestamo {
 
     @Override
     public String toString() {
-        return "Prestamo{" + "libro=" + libro + ", usuario=" + usuario + '}';
+        return "Prestamo{" +
+                "id=" + id +
+                ", libro=" + libro +
+                ", usuario=" + usuario +
+                '}';
     }
-
 }
