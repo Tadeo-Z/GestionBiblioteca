@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package org.itson.dominio;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
@@ -10,18 +11,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.Column;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Prestamo{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_prestamo")
     private Long id;
     
-    @ManyToOne
+    @OneToMany (mappedBy = "prestamo")
     @JoinColumn(name = "id_libro")
-    private Libro libro;
+    private List<Libro> libros;
     
     @ManyToOne
     @JoinColumn(name = "id_usuario")
@@ -30,9 +31,9 @@ public class Prestamo{
     public Prestamo() {
     }
 
-    public Prestamo(Long id, Libro libro, Usuario usuario) {
+    public Prestamo(Long id, List<Libro> libros, Usuario usuario) {
         this.id = id;
-        this.libro = libro;
+        this.libros = libros;
         this.usuario = usuario;
     }
 
@@ -44,12 +45,12 @@ public class Prestamo{
         this.id = id;
     }
 
-    public Libro getLibro() {
-        return libro;
+    public List<Libro> getLibros() {
+        return libros;
     }
 
-    public void setLibro(Libro libro) {
-        this.libro = libro;
+    public void setLibros(Libro libro) {
+        this.libros = libros;
     }
 
     public Usuario getUsuario() {
@@ -64,7 +65,7 @@ public class Prestamo{
     public String toString() {
         return "Prestamo{" +
                 "id=" + id +
-                ", libro=" + libro +
+                ", libros=" + libros +
                 ", usuario=" + usuario +
                 '}';
     }

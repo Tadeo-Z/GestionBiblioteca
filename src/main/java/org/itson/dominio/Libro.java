@@ -2,12 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+
 package org.itson.dominio;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Libro {
@@ -27,12 +30,16 @@ public class Libro {
     private String autor;
     
     @Column(name = "disponibilidad")
-    private boolean disponibilidad;
+    private EstadoLibro disponibilidad;
 
+    @ManyToOne
+    @JoinColumn(name="id_libro")
+    private Prestamo prestamo;
+    
     public Libro() {
     }
 
-    public Libro(String identificador, String titulo, String autor, boolean disponibilidad) {
+    public Libro(String identificador, String titulo, String autor, EstadoLibro disponibilidad) {
         this.identificador = identificador;
         this.titulo = titulo;
         this.autor = autor;
@@ -71,11 +78,11 @@ public class Libro {
         this.autor = autor;
     }
 
-    public boolean isDisponibilidad() {
+    public EstadoLibro isDisponibilidad() {
         return disponibilidad;
     }
 
-    public void setDisponibilidad(boolean disponibilidad) {
+    public void setDisponibilidad(EstadoLibro disponibilidad) {
         this.disponibilidad = disponibilidad;
     }
 

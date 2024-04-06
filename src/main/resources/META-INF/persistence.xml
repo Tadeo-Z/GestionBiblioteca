@@ -6,6 +6,7 @@
     <class>org.itson.dominio.Libro</class>
     <class>org.itson.dominio.Prestamo</class>
     <class>org.itson.dominio.Usuario</class>
+    <class>org.itson.dominio.Bibliotecario</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/biblioteca?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

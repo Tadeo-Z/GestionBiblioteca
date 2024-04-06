@@ -3,12 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package org.itson.dominio;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Column;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -19,7 +21,6 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
     
     @Column(name = "nombre")
@@ -27,12 +28,8 @@ public class Usuario {
     
     @Column(name = "contrasena")
     private String contrasena;
-
+   
     public Usuario() {
-    }
-
-    public Usuario(String nombre) {
-        this.nombre = nombre;
     }
 
     public Usuario(String nombre, String contrasena) {
