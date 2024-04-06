@@ -29,12 +29,12 @@ public class UsuarioDAO implements IUsuario{
         EntityManager em = emf.createEntityManager();
         
         try{
-            
+            System.out.println("A");
             em.getTransaction().begin();
             em.persist(usuario);
             em.getTransaction().commit();
             registrado = true;
-            
+            System.out.println("B");
         }catch(Exception e){
             em.getTransaction().rollback();
             registrado = false;

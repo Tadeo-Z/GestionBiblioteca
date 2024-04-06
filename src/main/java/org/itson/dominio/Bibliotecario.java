@@ -3,39 +3,36 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package org.itson.dominio;
-import java.util.Objects;
+
+import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Column;
+import javax.persistence.Id;
 
 /**
  *
- * @author TADEO
+ * @author HP 240 G8
  */
 @Entity
-public class Usuario {
+public class Bibliotecario implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
-    @Column(name = "nombre")
+
+     @Column(name = "nombre")
     private String nombre;
     
     @Column(name = "contrasena")
     private String contrasena;
 
-    public Usuario() {
+    public Bibliotecario() {
     }
 
-    public Usuario(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public Usuario(String nombre, String contrasena) {
+    public Bibliotecario(String nombre, String contrasena) {
         this.nombre = nombre;
         this.contrasena = contrasena;
     }
@@ -58,32 +55,27 @@ public class Usuario {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.nombre);
-        hash = 53 * hash + Objects.hashCode(this.contrasena);
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Bibliotecario)) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        Bibliotecario other = (Bibliotecario) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
-        final Usuario other = (Usuario) obj;
-        if (!Objects.equals(this.nombre, other.nombre)) {
-            return false;
-        }
-        return Objects.equals(this.contrasena, other.contrasena);
+        return true;
     }
 
     @Override
     public String toString() {
-        return "Usuario{" + "nombre=" + nombre + ", contrasena=" + contrasena + '}';
+        return "org.itson.dominio.Bibliotecario[ id=" + id + " ]";
     }
+    
 }
