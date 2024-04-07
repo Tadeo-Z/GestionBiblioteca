@@ -112,7 +112,7 @@ public class LibroDAO implements ILibro {
     }
 
     @Override
-    public List <Libro> getLibroByTitulo(String titulo) throws Exception {
+    public List <Libro> getLibrosByTitulo(String titulo) throws Exception {
         if (titulo.isBlank()) {
             return null;
         }
@@ -129,7 +129,7 @@ public class LibroDAO implements ILibro {
     }
 
     @Override
-    public List<Libro> getLibroByAutor(String autor) throws Exception {
+    public List<Libro> getLibrosByAutor(String autor) throws Exception {
         if (autor.isBlank()) {
             return null;
         }
@@ -146,20 +146,20 @@ public class LibroDAO implements ILibro {
     }
 
     @Override
-    public List<Libro> getLibroByISBN(String isbn) throws Exception {
+    public Libro getLibroByISBN(String isbn) throws Exception {
         if (isbn.isBlank()) {
             return null;
         }
 
-        List libros = new ArrayList<Libro>();
+        Libro libro = null;
         try {
             TypedQuery<Libro> query = em.createQuery("SELECT e FROM Libro e WHERE e.isbn = :isbn", Libro.class);
             query.setParameter("isbn", isbn);
-            libros = query.getResultList();
+            libro = query.getSingleResult();
         } catch (Exception e) {
             throw new Exception("La busqueda no se pudo ejecutar:" + e);
         }
-        return libros;
+        return libro;
     }
 
     @Override
