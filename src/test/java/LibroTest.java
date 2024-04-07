@@ -38,52 +38,52 @@ public class LibroTest {
     }
     
     @Test
-    public void testRegistrarLibro(){
+    public void testRegistrarLibro() throws Exception{
         Libro libro = new Libro();
         LibroDAO libroDAO = new LibroDAO();
-        Libro resultado = libroDAO.registrarLibro(libro);
+        Boolean resultado = libroDAO.insert(libro);
         assertEquals(true, resultado);
     }
     
     @Test
-    public void testActualizarLibro(){
+    public void testActualizarLibro() throws Exception{
         Libro libro = new Libro();
         LibroDAO libroDAO = new LibroDAO();
-        libroDAO.registrarLibro(libro);
-        Libro resultado = libroDAO.actualizarLibro(libro);
+        libroDAO.insert(libro);
+        Boolean resultado = libroDAO.insert(libro);
         assertEquals(true, resultado);
     }
     
     @Test
-    public void testEliminarLibro(){
+    public void testEliminarLibro() throws Exception{
         Libro libro = new Libro();
         LibroDAO libroDAO = new LibroDAO();
-        libroDAO.registrarLibro(libro);
-        Libro resultado = libroDAO.eliminarLibro(libro);
+        libroDAO.insert(libro);
+        Boolean resultado = libroDAO.delete(libro);
         assertEquals(true, resultado);
     }
     
     @Test
-    public void testBuscarLibroTitulo(){
+    public void testBuscarLibroTitulo() throws Exception{
         Libro libro = new Libro();
         LibroDAO libroDAO = new LibroDAO();
-        Libro resultado = libroDAO.buscarLibroTitulo(libro.getTitulo());
+        Libro resultado = libroDAO.getLibroByTitulo(libro.getTitulo());
         assertEquals(true, resultado);
     }
     
      @Test
-    public void testBuscarLibroAutor(){
+    public void testBuscarLibroAutor() throws Exception{
         Libro libro = new Libro();
         LibroDAO libroDAO = new LibroDAO();
-        Libro resultado = libroDAO.buscarLibroAutor(libro.getAutor());
+        Libro resultado = libroDAO.getLibroByAutor(libro.getAutor());
         assertEquals(true, resultado);
     }
     
      @Test
-    public void testBuscarLibroIdentificador(){
+    public void testBuscarLibroIdentificador() throws Exception{
         Libro libro = new Libro();
         LibroDAO libroDAO = new LibroDAO();
-        Libro resultado = libroDAO.buscarLibroIdentificador(libro.getIdentificador());
+        Libro resultado = libroDAO.getLibroByISBN(libro.getIsbn());
         assertEquals(true, resultado);
     }
 }

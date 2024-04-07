@@ -45,21 +45,21 @@ public class PrestamoTest {
     // @Test
     // public void hello() {}
     @Test
-    public void testRegistrarPrestamo() {
+    public void testRegistrarPrestamo() throws Exception {
         Usuario usuario = new Usuario();
         Libro libro = new Libro();
         Prestamo prestamo = new Prestamo();
         PrestamoDAO prestamoDAO = new PrestamoDAO();
-        Prestamo resultado = prestamoDAO.registrarPrestamo(prestamo);
+        Boolean resultado = prestamoDAO.insert(prestamo);
         assertEquals(true, resultado);
     }
     
-    public void testLiberarPrestamo(){
-        Usuario usuario = new Usuario();
-        Libro libro = new Libro();
-        Prestamo prestamo = new Prestamo();
-        PrestamoDAO prestamoDAO = new PrestamoDAO();
-        Prestamo resultado = prestamoDAO.liberarPrestamo(prestamo);
-        assertEquals(true, resultado);
-    }
+//    public void testLiberarPrestamo(){
+//        Usuario usuario = new Usuario();
+//        Libro libro = new Libro();
+//        Prestamo prestamo = new Prestamo();
+//        PrestamoDAO prestamoDAO = new PrestamoDAO();
+//        Prestamo resultado = prestamoDAO.(prestamo);
+//        assertEquals(true, resultado);
+//    }
 }
