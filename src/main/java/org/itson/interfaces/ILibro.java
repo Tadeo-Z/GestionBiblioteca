@@ -19,7 +19,7 @@ public interface ILibro {
     public Libro update(Libro libro)throws Exception;
     public Boolean delete(Libro libro)throws Exception;
     public List<Libro> getAll()throws Exception;
-    public Libro  getLibroByTitulo(String titulo)throws Exception;
+    public List<Libro>  getLibrosByTitulo(String titulo)throws Exception;
     public List<Libro>  getLibrosByAutor(String autor)throws Exception;
     public Libro  getLibroByISBN(String isbn)throws Exception;
     public List <Libro> getLibrosByDisponibilidad(EstadoLibro estado)throws Exception;    
