@@ -11,28 +11,34 @@ import javax.persistence.GenerationType;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.Column;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Prestamo{
+public class Prestamo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    @OneToMany (mappedBy = "prestamo")
-    @JoinColumn(name = "id_libro")
+
+    @JoinTable(
+            name = "Prestamo_libro",
+            joinColumns = @JoinColumn(name = "id_prestamo"),
+            inverseJoinColumns = @JoinColumn(name = "id_libro"))
     private List<Libro> libros;
-    
+
     @ManyToOne
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
+    @Column (name="estado")
+    private EstadoPrestamo estado;
+    
     public Prestamo() {
     }
 
-    public Prestamo(Long id, List<Libro> libros, Usuario usuario) {
-        this.id = id;
+    public Prestamo(List<Libro> libros, Usuario usuario) {
         this.libros = libros;
         this.usuario = usuario;
     }

@@ -4,12 +4,16 @@
  */
 
 package org.itson.dominio;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -20,7 +24,7 @@ public class Libro {
     @Column(name = "id_libro")
     private Long id;
     
-    @Column(name = "identificador")
+    @Column(name = "I")
     private String identificador;
     
     @Column(name = "titulo")
@@ -30,11 +34,11 @@ public class Libro {
     private String autor;
     
     @Column(name = "disponibilidad")
+    @Enumerated (EnumType.STRING)
     private EstadoLibro disponibilidad;
 
-    @ManyToOne
-    @JoinColumn(name="id_libro")
-    private Prestamo prestamo;
+    @ManyToMany(mappedBy = "libros")
+    private List <Prestamo> prestamos;
     
     public Libro() {
     }

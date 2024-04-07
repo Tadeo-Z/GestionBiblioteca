@@ -29,6 +29,9 @@ public class Usuario {
     @Column(name = "contrasena")
     private String contrasena;
    
+    @OneToMany(mappedBy="usuario")
+    private List <Prestamo> prestamo;
+    
     public Usuario() {
     }
 
