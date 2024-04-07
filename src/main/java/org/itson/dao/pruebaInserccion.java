@@ -4,6 +4,8 @@
  */
 package org.itson.dao;
 
+import Utilities.Encriptador;
+import Utilities.SesionManager;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -17,6 +19,7 @@ import org.itson.dominio.EstadoLibro;
 import org.itson.dominio.EstadoPrestamo;
 import org.itson.dominio.Libro;
 import org.itson.dominio.Prestamo;
+import org.itson.interfaces.ISesionManager;
 import org.itson.interfaces.IUsuario;
 import org.itson.negocio.UsuarioNegocio;
 
@@ -29,10 +32,19 @@ public class pruebaInserccion {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         
         EntityManagerFactory emf =Conexion.getConexion();
         EntityManager em = emf.createEntityManager();
+        
+//        UsuarioDAO usuarioDAO = new UsuarioDAO();
+//        Usuario usuario = usuarioDAO.getUsuarioByName("TestName#1");
+//        System.out.println(usuario);
+//        Encriptador encrypter = new Encriptador();
+//        System.out.println(encrypter.decrypt("h4O8svGMXLu2lf2zs8xbjw=="));
+//
+//        ISesionManager sesionManager = new SesionManager();
+//        System.out.println(sesionManager.autenticarUsuario("TestName#1", "TestPassword#1")); // Usuario registrado, Contraseña correcta
 
     }
 

@@ -72,24 +72,25 @@ public class UsuarioTest {
     // public void hello() {}
     
     @Test
-    public void testAutenticacionDeUsuariosNoRegistrados() {
+    public void testAutenticacionDeUsuariosNoRegistrados() throws Exception {
         // Prueba de autenticación de usuarios
         ISesionManager sesionManager = new SesionManager();
-        assertFalse(sesionManager.autenticarUsuario("usuario", "contraseña")); // Usuario no registrado
+        assertFalse(sesionManager.autenticarUsuario("NotAnUser", "NotAPassword")); // Usuario no registrado
     }
     
     @Test
-    public void testAutenticacionDeUsuariosRegistrados() {
+    public void testAutenticacionDeUsuariosRegistrados() throws Exception {
         // Prueba de autenticación de usuarios
+        
         ISesionManager sesionManager = new SesionManager();
-        assertTrue(sesionManager.autenticarUsuario("usuario", "contraseña")); // Usuario registrado, Contraseña correcta
+        assertTrue(sesionManager.autenticarUsuario("TestName#1", "TestPassword#1")); // Usuario registrado, Contraseña correcta
     }
     
     @Test
-    public void testAutenticacionDeUsuariosErronea() {
+    public void testAutenticacionDeUsuariosErronea() throws Exception {
         // Prueba de autenticación de usuarios
         ISesionManager sesionManager = new SesionManager();
-        assertFalse(sesionManager.autenticarUsuario("usuario", "contraseña")); // Usuario registrado, Contraseña incorrecta
+        assertFalse(sesionManager.autenticarUsuario("TestName#1", "NotAPassword")); // Usuario registrado, Contraseña incorrecta
     }
         
     @Test
@@ -197,7 +198,7 @@ public class UsuarioTest {
     @Test
     public void testDeleteUsuarioFuncional() throws Exception {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
-        Usuario usuario = new Usuario("TestName#1","TestPassWord#1");
+        Usuario usuario = new Usuario("TestName#3","TestPassWord#3");
         assertTrue(usuarioDAO.insert(usuario));
     }
 

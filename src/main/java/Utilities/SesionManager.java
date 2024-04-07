@@ -33,19 +33,19 @@ public class SesionManager implements ISesionManager {
 
         try {
             usuario = usuarioDAO.getUsuarioByName(nombreUsuario);
-
-            if (encrypter.encrypt(password) == usuario.getContrasena()) {
+            
+            if (encrypter.encrypt(password).equals(usuario.getContrasena())) {
                 return true;
             }
 
-        } catch (DAOException ex) {
+        } catch (Exception ex) {
             if (usuario == null) {
-                throw new DAOException("No se encontró el usuario");
+                return false;
             }
             throw new DAOException("No se pudo conectar con la base de datos");
         }
-        throw new LoginException("Contraseña incorrecta");
 
+        return false;
     }
 
 }
