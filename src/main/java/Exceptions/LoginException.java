@@ -8,11 +8,10 @@ package Exceptions;
  *
  * @author HP 240 G8
  */
-public class DAOException extends Exception {
+public class LoginException extends Exception{
 
-    public DAOException(String message) {
+    public LoginException(String message) {
         super(message);
     }
-    
     
 }
