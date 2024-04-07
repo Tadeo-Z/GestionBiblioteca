@@ -3,11 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
  */
 
+import java.util.ArrayList;
+import java.util.List;
 import org.itson.dao.LibroDAO;
 import org.itson.dominio.Libro;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -65,17 +68,17 @@ public class LibroTest {
     
     @Test
     public void testBuscarLibroTitulo() throws Exception{
-        Libro libro = new Libro();
+        List <Libro> libros = new ArrayList<Libro>();
         LibroDAO libroDAO = new LibroDAO();
-        Libro resultado = libroDAO.getLibroByTitulo(libro.getTitulo());
-        assertEquals(true, resultado);
+        List resultado = libroDAO.getLibrosByTitulo("TestTitulo#2");
+        assertFalse(resultado.isEmpty());
     }
     
      @Test
     public void testBuscarLibroAutor() throws Exception{
-        Libro libro = new Libro();
+        List <Libro> libros = new ArrayList<Libro>();
         LibroDAO libroDAO = new LibroDAO();
-        Libro resultado = libroDAO.getLibroByAutor(libro.getAutor());
+        List resultado = libroDAO.getLibrosByAutor("TestBook#3");
         assertEquals(true, resultado);
     }
     

@@ -115,7 +115,7 @@ public class LibroDAO implements ILibro {
     public List <Libro> getLibrosByTitulo(String titulo) throws Exception {
         if (titulo.isBlank()) {
             return null;
-        }
+        } 
 
         List libros = new ArrayList<Libro>();
         try {
