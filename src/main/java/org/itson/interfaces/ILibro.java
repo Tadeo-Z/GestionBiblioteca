@@ -4,7 +4,10 @@
  */
 package org.itson.interfaces;
 
+import java.util.List;
+import org.itson.dominio.EstadoLibro;
 import org.itson.dominio.Libro;
+import org.itson.dominio.Usuario;
 
 /**
  *
@@ -12,10 +15,14 @@ import org.itson.dominio.Libro;
  */
 public interface ILibro {
     
-    public Libro registrarLibro(Libro libro);
-    public Libro actualizarLibro(Libro libro);
-    public Libro eliminarLibro(Libro libro);
-    public Libro buscarLibroTitulo(String titulo);
-    public Libro buscarLibroAutor(String autor);
-    public Libro buscarLibroIdentificador(String id);
+    public Boolean insert(Libro libro)throws Exception;
+    public Libro update(Libro libro)throws Exception;
+    public Boolean delete(Libro libro)throws Exception;
+    public List<Libro> getAll()throws Exception;
+    public List<Libro>  getLibroByTitulo(String titulo)throws Exception;
+    public List<Libro>  getLibroByAutor(String autor)throws Exception;
+    public List<Libro>  getLibroByISBN(String isbn)throws Exception;
+    public List <Libro> getLibrosByDisponibilidad(EstadoLibro estado)throws Exception;    
+    public List<Libro> getLibrosPrestadosByUsuario(Usuario usuario)throws Exception;
+
 }

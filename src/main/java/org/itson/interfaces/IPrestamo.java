@@ -4,7 +4,10 @@
  */
 package org.itson.interfaces;
 
+import java.util.List;
+import org.itson.dominio.EstadoPrestamo;
 import org.itson.dominio.Prestamo;
+import org.itson.dominio.Usuario;
 
 /**
  *
@@ -12,7 +15,12 @@ import org.itson.dominio.Prestamo;
  */
 public interface IPrestamo {
     
-    public Prestamo registrarPrestamo(Prestamo prestamo);
-    public Prestamo liberarPrestamo(Prestamo prestamo);
+    public Boolean insert(Prestamo prestamo)throws Exception;
+    public Prestamo update(Prestamo prestamo)throws Exception;
+    public Boolean delete(Prestamo prestamo)throws Exception;
+    public List<Prestamo> getPrestamosByUsuario(Usuario usuario)throws Exception;
+    public List<Prestamo> getPrestamosByDisponibilidad(EstadoPrestamo estado)throws Exception;
+    public List<Prestamo> getAll()throws Exception;
+
     
 }

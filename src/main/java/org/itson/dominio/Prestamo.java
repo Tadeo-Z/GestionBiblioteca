@@ -38,9 +38,10 @@ public class Prestamo {
     public Prestamo() {
     }
 
-    public Prestamo(List<Libro> libros, Usuario usuario) {
+    public Prestamo(List<Libro> libros, Usuario usuario, EstadoPrestamo estado) {
         this.libros = libros;
         this.usuario = usuario;
+        this.estado = estado;
     }
 
     public Long getId() {

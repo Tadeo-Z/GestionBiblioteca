@@ -4,36 +4,33 @@
  */
 package org.itson.dao;
 
-import Exceptions.ExceptionDAO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
-import org.itson.dominio.Libro;
+import org.itson.dominio.Bibliotecario;
 import org.itson.dominio.Usuario;
-import org.itson.interfaces.IUsuario;
+import org.itson.interfaces.IBibliotecario;
 
 /**
  *
- * @author TADEO
+ * @author HP 240 G8
  */
-public class UsuarioDAO implements IUsuario{
+public class BibliotecarioDAO implements IBibliotecario {
 
     EntityManagerFactory emf;
     EntityManager em;
 
-
-    public UsuarioDAO() {
+    public BibliotecarioDAO() {
         this.emf = Conexion.getConexion();
         this.em = emf.createEntityManager();
     }
     
     @Override
-    public Boolean insert(Usuario usuario) throws Exception {
-        
-        if (usuario==null){
+    public Boolean insert(Bibliotecario bibliotecario) throws Exception {
+       if (bibliotecario==null){
             return false;
         }
         
@@ -41,111 +38,109 @@ public class UsuarioDAO implements IUsuario{
         try{
             transaction = em.getTransaction();            
             transaction.begin();
-            em.persist(usuario);
+            em.persist(bibliotecario);
             em.getTransaction().commit();
         } catch (Exception e) {
            if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
-            throw new Exception("El usuario no se pudo insertar:" + e);
+            throw new Exception("El bibliotecario no se pudo insertar:" + e);
         }
         return true;
     }
 
-
     @Override
-    public Usuario update(Usuario usuario) throws Exception {
-        
-        if (usuario==null){
+    public Bibliotecario update(Bibliotecario bibliotecario) throws Exception {
+        if (bibliotecario == null) {
             return null;
         }
-        
-        if (usuario.getNombre().isBlank()||usuario.getContrasena().isBlank()){
+
+        if (bibliotecario.getNombre().isBlank() || bibliotecario.getContrasena().isBlank()) {
             return null;
         }
-        
+
         EntityTransaction transaction = null;
-        try{
-            transaction = em.getTransaction();            
+        try {
+            transaction = em.getTransaction();
             transaction.begin();
-            em.merge(usuario);
+            em.merge(bibliotecario);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
             if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
-            throw new Exception("El usuario no se pudo actualizar:" + e);
+            throw new Exception("El bibliotecario no se pudo actualizar:" + e);
         }
-        return usuario;
+        return bibliotecario;
     }
 
     @Override
-    public Boolean delete(Usuario usuario) throws Exception{
-        
-        if (usuario==null){
+    public Boolean delete(Bibliotecario bibliotecario) throws Exception {
+        if (bibliotecario == null) {
             return false;
         }
-        
+
         EntityTransaction transaction = null;
-        try{
-            transaction = em.getTransaction();            
+        try {
+            transaction = em.getTransaction();
             transaction.begin();
-            em.remove(usuario);
+            em.remove(bibliotecario);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
             if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
-            throw new Exception("El usuario no se pudo eliminar:" + e);
+            throw new Exception("El bibliotecario no se pudo eliminar:" + e);
         }
         return true;
     }
 
-    @Override
-    public Usuario getUsuarioById(Long id) throws Exception {
-        
-        if (id==null){
-            return null;
-        }
-        
-        Usuario usuario;
-        try {
-             usuario=em.find(Usuario.class, id);
-        } catch (Exception e) {
-            throw new Exception("La busqueda no se pudo ejecutar:" + e);
-        }
-        return usuario;
-    }
-
-    @Override
-    public Usuario getUsuarioByName(String nombre) throws Exception {
+   @Override
+    public Bibliotecario getBibliotecarioByName(String nombre) throws Exception {
         
         if (nombre==null || nombre.isBlank()){
             return null;
         }
         
-        Usuario usuario;
+        Bibliotecario bibliotecario;
         try {
-            TypedQuery<Usuario> query = em.createQuery("SELECT e FROM Usuario e WHERE e.nombre = :nombre", Usuario.class);
+            TypedQuery<Bibliotecario> query = em.createQuery("SELECT e FROM Bibliotecario e WHERE e.nombre = :nombre", Bibliotecario.class);
             query.setParameter("nombre", nombre);
-            usuario = query.getSingleResult();
+            bibliotecario = query.getSingleResult();
         } catch (Exception e) {
             throw new Exception("La busqueda no se pudo ejecutar:" + e);
         }
-        return usuario;
+        return bibliotecario;
     }
 
     @Override
-    public List<Usuario> getAll() throws Exception {
-        List usuarios = new ArrayList<Usuario>();
+    public List<Bibliotecario> getAll() throws Exception {
+        List bibliotecarios = new ArrayList<Bibliotecario>();
         try {
-            TypedQuery<Usuario> query = em.createQuery("SELECT e FROM Usuario e", Usuario.class);
-            usuarios = query.getResultList();
+            TypedQuery<Bibliotecario> query = em.createQuery("SELECT e FROM Bibliotecario e", Bibliotecario.class);
+            bibliotecarios = query.getResultList();
         } catch (Exception e) {
             throw new Exception("La busqueda no se pudo ejecutar:" + e);
         }
-        return usuarios;
+        return bibliotecarios;
     }
+
+    @Override
+    public Bibliotecario getBibliotecarioById(Long id) throws Exception {
+        
+        if (id==null){
+            return null;
+        }
+        
+        Bibliotecario bibliotecario;
+        try {
+             bibliotecario=em.find(Bibliotecario.class, id);
+        } catch (Exception e) {
+            throw new Exception("La busqueda no se pudo ejecutar:" + e);
+        }
+        return bibliotecario;
+    }
+    
 }

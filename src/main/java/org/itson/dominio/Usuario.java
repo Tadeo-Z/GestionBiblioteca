@@ -35,11 +35,15 @@ public class Usuario {
     public Usuario() {
     }
 
+    public Long getId(){
+        return this.id;
+    }
+    
     public Usuario(String nombre, String contrasena) {
         this.nombre = nombre;
         this.contrasena = contrasena;
     }
-
+    
     public String getNombre() {
         return nombre;
     }

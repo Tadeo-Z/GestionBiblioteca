@@ -15,9 +15,9 @@ public class UsuarioNegocio {
         udao = new UsuarioDAO();
     }
     
-    public boolean registrarUsuario(Usuario usuario){
+    public boolean registrarUsuario(Usuario usuario) throws Exception{
         
-        return udao.registrarUsuario(usuario);
+        return udao.insert(usuario);
         
     }
 }

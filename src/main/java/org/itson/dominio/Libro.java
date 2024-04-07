@@ -24,8 +24,8 @@ public class Libro {
     @Column(name = "id_libro")
     private Long id;
     
-    @Column(name = "I")
-    private String identificador;
+    @Column(name = "ISBN")
+    private String isbn;
     
     @Column(name = "titulo")
     private String titulo;
@@ -43,8 +43,8 @@ public class Libro {
     public Libro() {
     }
 
-    public Libro(String identificador, String titulo, String autor, EstadoLibro disponibilidad) {
-        this.identificador = identificador;
+    public Libro(String isbn, String titulo, String autor, EstadoLibro disponibilidad) {
+        this.isbn = isbn;
         this.titulo = titulo;
         this.autor = autor;
         this.disponibilidad = disponibilidad;
@@ -58,12 +58,12 @@ public class Libro {
         this.id = id;
     }
 
-    public String getIdentificador() {
-        return identificador;
+    public String getIsbn() {
+        return isbn;
     }
 
-    public void setIdentificador(String identificador) {
-        this.identificador = identificador;
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
     public String getTitulo() {
@@ -94,7 +94,7 @@ public class Libro {
     public String toString() {
         return "Libro{" +
                 "id=" + id +
-                ", identificador='" + identificador + '\'' +
+                ", isbn='" + isbn + '\'' +
                 ", titulo='" + titulo + '\'' +
                 ", autor='" + autor + '\'' +
                 ", disponibilidad=" + disponibilidad +

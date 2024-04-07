@@ -4,6 +4,9 @@
  */
 package org.itson.interfaces;
 
+import java.util.List;
+import org.itson.dominio.Libro;
+import org.itson.dominio.Prestamo;
 import org.itson.dominio.Usuario;
 
 /**
@@ -12,6 +15,11 @@ import org.itson.dominio.Usuario;
  */
 public interface IUsuario {
     
-    public Boolean registrarUsuario(Usuario usuario);
-    public Boolean actualizarUsuario(Usuario usuario);
+    public Boolean insert(Usuario usuario)throws Exception;
+    public Usuario update(Usuario usuario)throws Exception;
+    public Boolean delete(Usuario usuario)throws Exception;
+    public Usuario getUsuarioById(Long id)throws Exception;
+    public Usuario getUsuarioByName(String nombre)throws Exception;
+    public List <Usuario> getAll()throws Exception;
+    
 }

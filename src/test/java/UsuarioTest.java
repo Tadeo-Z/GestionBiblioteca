@@ -158,7 +158,6 @@ public class UsuarioTest {
         UsuarioDAO usuarioDAO = mock(UsuarioDAO.class);
 
         Usuario usuario = new Usuario("TestName#3", "TestPassWord#3");
-        usuario.setId(1L);
 
         when(usuarioDAO.getUsuarioById(3L)).thenReturn(usuario);
 
