@@ -131,7 +131,7 @@ public class UsuarioDAO implements IUsuario{
         }
         
         Usuario usuario=null;
-        try {
+        try { 
             TypedQuery<Usuario> query = em.createQuery("SELECT e FROM Usuario e WHERE e.nombre = :nombre", Usuario.class);
             query.setParameter("nombre", nombre);
             usuario = query.getSingleResult();
