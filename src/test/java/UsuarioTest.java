@@ -12,6 +12,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
@@ -106,6 +107,13 @@ public class UsuarioTest {
     }
 
     @Test
+    public void testRegistrarUsuarioBlank() throws Exception{
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        Usuario usuario = new Usuario("","");
+        assertFalse(usuarioDAO.insert(usuario));
+    }
+    
+    @Test
     public void testActualizarUsuarioFuncional() throws Exception {
 
         UsuarioDAO usuarioDAO = mock(UsuarioDAO.class);
@@ -116,10 +124,19 @@ public class UsuarioTest {
 
         usuario.setNombre("Mockito");
          
-         Usuario updatedUsuario = usuarioDAO.update(usuario);
         
-         doAnswer(invocation -> {
+        //Hay que fakear este update por que el merge de jpa requiere el usuario de la base de datos
+        doAnswer(invocation -> {
 
+            Usuario updatedUsuario= invocation.getArgument(0);
+            return updatedUsuario;
+            
+        }).when(usuarioDAO).update(usuario);
+        
+         Usuario updatedUsuario = usuarioDAO.update(usuario);
+         
+         doAnswer(invocation -> {
+             
             return updatedUsuario;
             
         }).when(usuarioDAO).getUsuarioById(1L);
@@ -141,6 +158,7 @@ public class UsuarioTest {
          
          Usuario updatedUsuario = usuarioDAO.update(null);
         
+         
          doAnswer(invocation -> {
 
             return updatedUsuario;
@@ -174,5 +192,75 @@ public class UsuarioTest {
          
         Usuario updatedUsuarioTest = usuarioDAO.getUsuarioById(3L);
         assertNull(updatedUsuarioTest);
+    }
+
+    @Test
+    public void testDeleteUsuarioFuncional() throws Exception {
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        Usuario usuario = new Usuario("TestName#1","TestPassWord#1");
+        assertTrue(usuarioDAO.insert(usuario));
+    }
+
+    @Test
+    public void testDeleteUsuarioNull() throws Exception {
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        Usuario usuario = null;
+        assertFalse(usuarioDAO.delete(usuario));
+    }
+
+    @Test
+    public void testDeleteUsuarioBlank() throws Exception {
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        Usuario usuario = new Usuario("","");
+        assertFalse(usuarioDAO.insert(usuario));
+    }
+
+    @Test
+    public void testGetUsuarioByIdFuncional() throws Exception{
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        Usuario usuario = usuarioDAO.getUsuarioById(1L);
+        assertEquals(usuario.getId(),1L);
+    }
+    
+    
+    @Test
+    public void testGetUsuarioByIdNegative() throws Exception{
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        assertNull(usuarioDAO.getUsuarioById(-1L));
+    }
+    
+    @Test
+    public void testGetUsuarioByIdNoFuncional() throws Exception{
+         UsuarioDAO usuarioDAO = new UsuarioDAO();
+        assertNull(usuarioDAO.getUsuarioById(3000000000L));
+    }
+    @Test
+    public void testGetUsuarioByIdNull() throws Exception{
+         UsuarioDAO usuarioDAO = new UsuarioDAO();
+        assertNull(usuarioDAO.getUsuarioById(null));
+    }
+    
+    @Test
+    public void testGetUsuarioByNameFuncional() throws Exception{
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        Usuario usuario = usuarioDAO.getUsuarioByName("TestName#2");
+        assertEquals(usuario.getNombre(),"TestName#2");
+    }
+    @Test
+    public void testGetUsuarioByNameNoFuncional() throws Exception{
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        assertNull(usuarioDAO.getUsuarioByName("NotAnActualName"));
+    }
+    
+    @Test
+    public void testGetUsuarioByNameNull() throws Exception{
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        assertNull(usuarioDAO.getUsuarioByName(null));
+    }
+    
+    @Test
+    public void testGetUsuarioByNameBlank() throws Exception{
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        assertNull(usuarioDAO.getUsuarioByName(""));
     }
 }

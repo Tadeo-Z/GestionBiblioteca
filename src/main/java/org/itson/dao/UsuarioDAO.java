@@ -37,6 +37,10 @@ public class UsuarioDAO implements IUsuario{
             return false;
         }
         
+        if (usuario.getNombre().isBlank()||usuario.getContrasena().isBlank()){
+            return false;
+        } 
+        
         EntityTransaction transaction = null;
         try{
             transaction = em.getTransaction();            
@@ -126,12 +130,15 @@ public class UsuarioDAO implements IUsuario{
             return null;
         }
         
-        Usuario usuario;
+        Usuario usuario=null;
         try {
             TypedQuery<Usuario> query = em.createQuery("SELECT e FROM Usuario e WHERE e.nombre = :nombre", Usuario.class);
             query.setParameter("nombre", nombre);
             usuario = query.getSingleResult();
         } catch (Exception e) {
+            if (usuario==null){
+                return null;
+            }
             throw new Exception("La busqueda no se pudo ejecutar:" + e);
         }
         return usuario;
