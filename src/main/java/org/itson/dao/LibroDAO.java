@@ -4,6 +4,7 @@
  */
 package org.itson.dao;
 
+import Utilities.Encriptador;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -35,7 +36,7 @@ public class LibroDAO implements ILibro {
         if (libro == null) {
             return false;
         }
-
+        
         EntityTransaction transaction = null;
         try {
             transaction = em.getTransaction();
@@ -57,7 +58,7 @@ public class LibroDAO implements ILibro {
             return null;
         }
 
-        if (libro.getAutor().isBlank()||libro.getIsbn().isBlank()||libro.getTitulo().isBlank()) {
+        if (libro.getAutor().isBlank() || libro.getIsbn().isBlank() || libro.getTitulo().isBlank()) {
             return null;
         }
 
@@ -112,10 +113,10 @@ public class LibroDAO implements ILibro {
     }
 
     @Override
-    public List <Libro> getLibrosByTitulo(String titulo) throws Exception {
+    public List<Libro> getLibrosByTitulo(String titulo) throws Exception {
         if (titulo.isBlank()) {
             return null;
-        } 
+        }
 
         List libros = new ArrayList<Libro>();
         try {
@@ -163,23 +164,6 @@ public class LibroDAO implements ILibro {
     }
 
     @Override
-    public List<Libro> getLibrosByDisponibilidad(EstadoLibro estado) throws Exception {
-        if (estado==null) {
-            return null;
-        }
-
-        List libros = new ArrayList<Libro>();
-        try {
-            TypedQuery<Libro> query = em.createQuery("SELECT e FROM Libro e WHERE e.estado = :estado", Libro.class);
-            query.setParameter("estado", estado);
-            libros = query.getResultList();
-        } catch (Exception e) {
-            throw new Exception("La busqueda no se pudo ejecutar:" + e);
-        }
-        return libros;
-    }
-
-    @Override
     public List<Libro> getLibrosPrestadosByUsuario(Usuario usuario) throws Exception {
         if (usuario == null) {
             return null;
@@ -200,5 +184,40 @@ public class LibroDAO implements ILibro {
             throw new Exception("La busqueda no se pudo ejecutar:" + e);
         }
         return libros;
+    }
+
+    @Override
+    public List<Libro> getLibrosByDisponibilidad(EstadoLibro estado) throws Exception {
+
+        if (estado == null) {
+            return null;
+        }
+
+        List libros = new ArrayList<Libro>();
+        try {
+            
+            TypedQuery<Libro> query = em.createQuery("SELECT e FROM Libro e WHERE e.estado = :estado", Libro.class);
+            query.setParameter("estado", estado);
+            libros = query.getResultList();
+        } catch (Exception e) {
+            throw new Exception("La busqueda no se pudo ejecutar:" + e);
+        }
+        return libros;
+
+    }
+
+    @Override
+    public Libro getLibroById(Long id) throws Exception {
+        if (id == null) {
+            return null;
+        }
+
+        Libro libro;
+        try {
+            libro = em.find(Libro.class, id);
+        } catch (Exception e) {
+            throw new Exception("La busqueda no se pudo ejecutar:" + e);
+        }
+        return libro;
     }
 }

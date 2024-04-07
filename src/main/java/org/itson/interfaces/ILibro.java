@@ -24,5 +24,4 @@ public interface ILibro {
     public Libro  getLibroByISBN(String isbn)throws Exception;
     public List <Libro> getLibrosByDisponibilidad(EstadoLibro estado)throws Exception;    
     public List<Libro> getLibrosPrestadosByUsuario(Usuario usuario)throws Exception;
-
-}
+    public Libro getLibroById(Long id) throws Exception ;}

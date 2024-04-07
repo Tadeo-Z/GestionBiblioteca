@@ -42,10 +42,10 @@ public class pruebaInserccion {
         EntityManager em = emf.createEntityManager();
         Usuario usuarioPrueba = new Usuario("jayson tatum", "boston");
 
-        UsuarioNegocio un = new UsuarioNegocio();
+        UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
 
         try {
-            un.registrarUsuario(usuarioPrueba);
+            usuarioNegocio.registrar(usuarioPrueba);
         } catch (Exception ex) {
             Logger.getLogger(pruebaInserccion.class.getName()).log(Level.SEVERE, null, ex);
         }

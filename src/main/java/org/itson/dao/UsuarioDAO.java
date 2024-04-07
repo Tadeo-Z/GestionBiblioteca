@@ -4,7 +4,7 @@
  */
 package org.itson.dao;
 
-import Exceptions.ExceptionDAO;
+import Exceptions.DAOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
