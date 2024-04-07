@@ -10,5 +10,5 @@ package org.itson.interfaces;
  */
 public interface ISesionManager {
     public boolean autenticarUsuario(String user, String password) throws Exception;
-    
+    public boolean autenticarBibliotecario(String user, String password) throws Exception;
 }

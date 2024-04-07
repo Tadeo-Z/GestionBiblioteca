@@ -8,7 +8,9 @@ import Exceptions.DAOException;
 import Exceptions.LoginException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.itson.dao.BibliotecarioDAO;
 import org.itson.dao.UsuarioDAO;
+import org.itson.dominio.Bibliotecario;
 import org.itson.dominio.Usuario;
 import org.itson.interfaces.ISesionManager;
 
@@ -19,6 +21,7 @@ import org.itson.interfaces.ISesionManager;
 public class SesionManager implements ISesionManager {
 
     private UsuarioDAO usuarioDAO;
+    private BibliotecarioDAO bibliotecarioDAO;
     private Encriptador encrypter;
 
     public SesionManager() {
@@ -47,5 +50,25 @@ public class SesionManager implements ISesionManager {
 
         return false;
     }
+@Override
+    public boolean autenticarBibliotecario(String nombreUsuario, String password) throws Exception {
 
+        Bibliotecario bibliotecario = null;
+
+        try {
+            bibliotecario = bibliotecarioDAO.getBibliotecarioByName(nombreUsuario);
+            
+            if (encrypter.encrypt(password).equals(bibliotecario.getContrasena())) {
+                return true;
+            }
+
+        } catch (Exception ex) {
+            if (bibliotecario == null) {
+                return false;
+            }
+            throw new DAOException("No se pudo conectar con la base de datos");
+        }
+
+        return false;
+    }
 }
