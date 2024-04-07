@@ -4,6 +4,12 @@
  */
 package Utilities;
 
+import Exceptions.DAOException;
+import Exceptions.LoginException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.itson.dao.UsuarioDAO;
+import org.itson.dominio.Usuario;
 import org.itson.interfaces.ISesionManager;
 
 /**
@@ -12,9 +18,34 @@ import org.itson.interfaces.ISesionManager;
  */
 public class SesionManager implements ISesionManager {
 
-    @Override
-    public boolean autenticarUsuario(String user, String password) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    private UsuarioDAO usuarioDAO;
+    private Encriptador encrypter;
+
+    public SesionManager() {
+        usuarioDAO = new UsuarioDAO();
+        encrypter = new Encriptador();
     }
-    
+
+    @Override
+    public boolean autenticarUsuario(String nombreUsuario, String password) throws Exception {
+
+        Usuario usuario = null;
+
+        try {
+            usuario = usuarioDAO.getUsuarioByName(nombreUsuario);
+
+            if (encrypter.encrypt(password) == usuario.getContrasena()) {
+                return true;
+            }
+
+        } catch (DAOException ex) {
+            if (usuario == null) {
+                throw new DAOException("No se encontró el usuario");
+            }
+            throw new DAOException("No se pudo conectar con la base de datos");
+        }
+        throw new LoginException("Contraseña incorrecta");
+
+    }
+
 }

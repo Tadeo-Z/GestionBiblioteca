@@ -9,6 +9,6 @@ package org.itson.interfaces;
  * @author HP 240 G8
  */
 public interface ISesionManager {
-    public boolean autenticarUsuario(String user, String password);
+    public boolean autenticarUsuario(String user, String password) throws Exception;
     
 }
