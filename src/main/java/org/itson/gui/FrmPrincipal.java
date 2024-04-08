@@ -9,7 +9,7 @@ package org.itson.gui;
  * @author marco
  */
 public class FrmPrincipal extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form FrmPrincipal
      */
@@ -38,6 +38,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnRegistrarUsuario.setText("Registrar Usuario");
+        btnRegistrarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarUsuarioActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnRegistrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, 180, 40));
 
         btnEditarUsuario.setText("Editar Uasuario");
@@ -71,6 +76,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarUsuarioActionPerformed
+        frmRegistrarUsuario registrarUsuarioFrame = new frmRegistrarUsuario();
+        this.dispose();
+        registrarUsuarioFrame.setVisible(true);
+    }//GEN-LAST:event_btnRegistrarUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
