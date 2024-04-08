@@ -36,6 +36,10 @@ public class Bibliotecario implements Serializable {
         this.nombre = nombre;
         this.contrasena = contrasena;
     }
+    
+    public Long getId(){
+        return id;
+    }
 
     public String getNombre() {
         return nombre;

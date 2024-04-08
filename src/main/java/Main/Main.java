@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package org.itson.dao;
+package Main;
 
 import Utilities.Encriptador;
 import Utilities.SesionManager;
@@ -12,7 +12,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import org.itson.dao.Conexion;
 import org.itson.dominio.Usuario;
+import org.itson.dao.UsuarioDAO;
 import org.itson.dao.UsuarioDAO;
 import org.itson.dominio.Bibliotecario;
 import org.itson.dominio.EstadoLibro;
@@ -27,7 +29,7 @@ import org.itson.negocio.UsuarioNegocio;
  *
  * @author marco
  */
-public class pruebaInserccion {
+public class Main {
 
     /**
      * @param args the command line arguments
@@ -59,7 +61,7 @@ public class pruebaInserccion {
         try {
             usuarioNegocio.registrar(usuarioPrueba);
         } catch (Exception ex) {
-            Logger.getLogger(pruebaInserccion.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         Bibliotecario bibliotecario = new Bibliotecario("Nombre", "Contraseña xd");

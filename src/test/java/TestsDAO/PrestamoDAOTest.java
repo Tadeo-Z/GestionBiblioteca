@@ -1,3 +1,5 @@
+package TestsDAO;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
@@ -18,9 +20,9 @@ import org.junit.jupiter.api.Test;
  *
  * @author TADEO
  */
-public class PrestamoTest {
+public class PrestamoDAOTest {
 
-    public PrestamoTest() {
+    public PrestamoDAOTest() {
     }
 
     @BeforeAll
