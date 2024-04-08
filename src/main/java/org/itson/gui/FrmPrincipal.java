@@ -60,6 +60,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jPanel1.add(btnPrestarLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 180, 40));
 
         btnBuscarLibro.setText("Buscar Libro");
+        btnBuscarLibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarLibroActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnBuscarLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, 180, 40));
         btnBuscarLibro.getAccessibleContext().setAccessibleDescription("");
 
@@ -123,6 +128,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
             Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnDevolverLibroActionPerformed
+
+    private void btnBuscarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarLibroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarLibroActionPerformed
 
     /**
      * @param args the command line arguments
