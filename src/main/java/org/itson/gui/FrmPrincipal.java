@@ -4,6 +4,9 @@
  */
 package org.itson.gui;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author marco
@@ -49,6 +52,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jPanel1.add(btnEditarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 180, 40));
 
         btnPrestarLibro.setText("Prestar Libro");
+        btnPrestarLibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrestarLibroActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnPrestarLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 180, 40));
 
         btnBuscarLibro.setText("Buscar Libro");
@@ -56,6 +64,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnBuscarLibro.getAccessibleContext().setAccessibleDescription("");
 
         btnDevolverLibro.setText("Devolver Libro");
+        btnDevolverLibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDevolverLibroActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnDevolverLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 180, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -82,6 +95,34 @@ public class FrmPrincipal extends javax.swing.JFrame {
         this.dispose();
         registrarUsuarioFrame.setVisible(true);
     }//GEN-LAST:event_btnRegistrarUsuarioActionPerformed
+
+    private void btnPrestarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrestarLibroActionPerformed
+        // TODO add your handling code here:
+        
+        try {
+            FrmPrestarLibro frm;
+            frm = new FrmPrestarLibro();
+            frm.setVisible(true);
+            this.dispose();
+            
+        } catch (Exception ex) {
+            Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_btnPrestarLibroActionPerformed
+
+    private void btnDevolverLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDevolverLibroActionPerformed
+        // TODO add your handling code here:
+        try {
+            FrmDevolverLibro frm;
+            frm = new FrmDevolverLibro();
+            frm.setVisible(true);
+            this.dispose();
+            
+        } catch (Exception ex) {
+            Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnDevolverLibroActionPerformed
 
     /**
      * @param args the command line arguments

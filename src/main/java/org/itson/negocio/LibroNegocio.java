@@ -7,6 +7,9 @@ import Utilities.Encriptador;
 import org.itson.dao.LibroDAO;
 import org.itson.interfaces.ILibro;
 import org.itson.dominio.Libro;
+import java.util.ArrayList;
+import java.util.List;
+import org.itson.dominio.EstadoLibro;
 /**
  *
  * @author
@@ -39,6 +42,17 @@ public class LibroNegocio {
 
         libroDAO.update(libro);
         return true;
+    }
+    
+    public List<Libro> obtenerLibrosDisponibles() throws Exception{
+        
+        List<Libro> librosDisponibles = new ArrayList<>();
+        
+        return librosDisponibles = libroDAO.getLibrosByDisponibilidad(EstadoLibro.DISPONIBLE);
+    }
+    
+    public Libro obtenerLibroISBN(String isbn)throws Exception{
+        return libroDAO.getLibroByISBN(isbn);
     }
 
 }

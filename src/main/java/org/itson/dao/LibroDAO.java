@@ -202,7 +202,7 @@ public class LibroDAO implements ILibro {
         List libros = new ArrayList<Libro>();
         try {
             
-            TypedQuery<Libro> query = em.createQuery("SELECT e FROM Libro e WHERE e.estado = :estado", Libro.class);
+            TypedQuery<Libro> query = em.createQuery("SELECT e FROM Libro e WHERE e.disponibilidad = :estado", Libro.class);
             query.setParameter("estado", estado);
             libros = query.getResultList();
         } catch (Exception e) {

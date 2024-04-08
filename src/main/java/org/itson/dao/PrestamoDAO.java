@@ -9,6 +9,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import org.itson.dominio.EstadoPrestamo;
 import org.itson.dominio.Prestamo;
@@ -162,5 +163,26 @@ public class PrestamoDAO implements IPrestamo {
         }
         return prestamo;
     }
+    
+    @Override
+    public Prestamo getPrestamoByLibroISBN(String isbn) throws Exception {
+        if (isbn == null || isbn.isEmpty()) {
+            return null;
+        }
+
+        Prestamo prestamo = null;
+        try {
+            TypedQuery<Prestamo> query = em.createQuery("SELECT p FROM Prestamo p JOIN p.libros l WHERE l.isbn = :isbn", Prestamo.class);
+            query.setParameter("isbn", isbn);
+            prestamo = query.getSingleResult();
+        } catch (NoResultException e) {
+           
+            return null;
+        } catch (Exception e) {
+            throw new Exception("Error al obtener préstamo por ISBN: " + e.getMessage());
+        }
+        return prestamo;
+    }
+
 
 }

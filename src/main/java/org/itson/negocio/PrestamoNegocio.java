@@ -3,11 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package org.itson.negocio;
+import java.util.List;
 import org.itson.dominio.Prestamo;
 import org.itson.dao.PrestamoDAO;
 import org.itson.dominio.EstadoLibro;
 import org.itson.dominio.Libro;
 import org.itson.interfaces.IPrestamo;
+import org.itson.dominio.EstadoPrestamo;
 /**
  *
  * @author 
@@ -38,7 +40,18 @@ public class PrestamoNegocio {
             libro.setDisponibilidad(EstadoLibro.DISPONIBLE);
             libroNegocio.editar(libro);
         }
+        prestamo.setEstado(EstadoPrestamo.DEVUELTO);
         return pdao.update(prestamo);
         
+    }
+    
+    public List<Prestamo> obtenerPrestamoDisponibilidad(EstadoPrestamo estado) throws Exception{
+        
+        return pdao.getPrestamosByDisponibilidad(estado);
+    }
+    
+    public Prestamo obtenerPrestamoByIsbn(String isbn) throws Exception{
+        
+        return pdao.getPrestamoByLibroISBN(isbn);
     }
 }

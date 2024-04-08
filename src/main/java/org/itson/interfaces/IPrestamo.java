@@ -22,6 +22,7 @@ public interface IPrestamo {
     public List<Prestamo> getPrestamosByDisponibilidad(EstadoPrestamo estado)throws Exception;
     public List<Prestamo> getAll()throws Exception;
     public Prestamo getPrestamoById(Long id)throws Exception;
+    public Prestamo getPrestamoByLibroISBN(String isbn) throws Exception;
 
     
 }

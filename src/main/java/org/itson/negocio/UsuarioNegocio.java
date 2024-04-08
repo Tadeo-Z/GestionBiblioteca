@@ -89,5 +89,9 @@ public class UsuarioNegocio {
         }
         return false;
     }
+    
+    public List<Usuario> getAllUsuarios()throws NegocioException, Exception{
+        return usuarioDAO.getAll();
+    }
 
 }
