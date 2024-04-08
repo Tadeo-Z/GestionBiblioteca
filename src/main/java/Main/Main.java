@@ -24,6 +24,10 @@ import org.itson.dominio.Prestamo;
 import org.itson.interfaces.ISesionManager;
 import org.itson.interfaces.IUsuario;
 import org.itson.negocio.UsuarioNegocio;
+import org.itson.dao.*;
+import org.itson.dominio.*;
+import org.itson.interfaces.*;
+import org.itson.negocio.*;
 
 /**
  *
@@ -39,6 +43,24 @@ public class Main {
         EntityManagerFactory emf =Conexion.getConexion();
         EntityManager em = emf.createEntityManager();
         
+        UsuarioDAO udao = new UsuarioDAO();
+        Usuario usuario = udao.getUsuarioById(13L);
+        PrestamoDAO pdao = new PrestamoDAO();
+        LibroDAO ldao = new LibroDAO();
+ 
+        
+        Libro libroObtenido = ldao.getLibroById(3L);
+        List<Libro> libros = new ArrayList<>();
+        
+        Prestamo prestamoIngresar = new Prestamo(libros, usuario, EstadoPrestamo.PRESTADO);
+        pdao.insert(prestamoIngresar);
+
+        
+
+
+
+//        PrestamoNegocio pne = new PrestamoNegocio();
+//        pdao.insert(prestamoPrueba);
 //        UsuarioDAO usuarioDAO = new UsuarioDAO();
 //        Usuario usuario = usuarioDAO.getUsuarioByName("TestName#1");
 //        System.out.println(usuario);

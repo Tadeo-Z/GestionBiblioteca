@@ -4,6 +4,7 @@
  */
 package org.itson.dominio;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
@@ -28,9 +29,10 @@ public class Prestamo {
             inverseJoinColumns = @JoinColumn(name = "id_libro"))
     private List<Libro> libros;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
+
 
     @Column (name="estado")
     private EstadoPrestamo estado;
@@ -68,6 +70,15 @@ public class Prestamo {
         this.usuario = usuario;
     }
 
+    public EstadoPrestamo getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoPrestamo estado) {
+        this.estado = estado;
+    }
+
+    
     @Override
     public String toString() {
         return "Prestamo{" +
