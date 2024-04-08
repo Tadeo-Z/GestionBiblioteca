@@ -148,7 +148,7 @@ public class LibroDAO implements ILibro {
 
     @Override
     public Libro getLibroByISBN(String isbn) throws Exception {
-        if (isbn.isBlank()) {
+        if (isbn == null || isbn.isBlank()) {
             return null;
         }
 
