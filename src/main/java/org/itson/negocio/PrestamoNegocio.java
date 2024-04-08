@@ -5,6 +5,8 @@
 package org.itson.negocio;
 import org.itson.dominio.Prestamo;
 import org.itson.dao.PrestamoDAO;
+import org.itson.dominio.EstadoLibro;
+import org.itson.dominio.Libro;
 import org.itson.interfaces.IPrestamo;
 /**
  *
@@ -16,5 +18,27 @@ public class PrestamoNegocio {
     
     public PrestamoNegocio(){
         pdao = new PrestamoDAO();
+    }
+    
+    public boolean registrarPrestamo(Prestamo prestamo) throws Exception{
+        LibroNegocio libroNegocio = new LibroNegocio();
+        
+        for (Libro libro : prestamo.getLibros()) {
+            libro.setDisponibilidad(EstadoLibro.NO_DISPONIBLE);
+            libroNegocio.editar(libro);
+        }
+        return pdao.insert(prestamo);
+        
+    }
+    
+    public Prestamo liberarPrestamo(Prestamo prestamo) throws Exception{
+        LibroNegocio libroNegocio = new LibroNegocio();
+        
+        for (Libro libro : prestamo.getLibros()) {
+            libro.setDisponibilidad(EstadoLibro.DISPONIBLE);
+            libroNegocio.editar(libro);
+        }
+        return pdao.update(prestamo);
+        
     }
 }

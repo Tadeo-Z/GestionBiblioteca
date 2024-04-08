@@ -100,6 +100,12 @@ public class LibroDAO implements ILibro {
         return true;
     }
 
+//    EntityManagerFactory emf;
+//
+//    public LibroDAO() {
+//        this.emf = Conexion.getConexion();
+//    }
+    
     @Override
     public List<Libro> getAll() throws Exception {
         List libros = new ArrayList<Libro>();

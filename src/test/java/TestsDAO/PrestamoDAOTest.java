@@ -1,14 +1,14 @@
 package TestsDAO;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
- */
 
 import org.itson.dao.PrestamoDAO;
+import org.itson.dominio.EstadoLibro;
+import org.itson.dominio.EstadoPrestamo;
 import org.itson.dominio.Libro;
 import org.itson.dominio.Prestamo;
 import org.itson.dominio.Usuario;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -41,27 +41,27 @@ public class PrestamoDAOTest {
     public void tearDown() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
     @Test
     public void testRegistrarPrestamo() throws Exception {
-        Usuario usuario = new Usuario();
-        Libro libro = new Libro();
-        Prestamo prestamo = new Prestamo();
+        Usuario usuario = new Usuario("prueba", "contraseñafalsa");
+        Libro libro = new Libro("abc", "librofalso", "alguien 123", EstadoLibro.NO_DISPONIBLE);
+        List<Libro> libros = new ArrayList<>();
+        libros.add(libro);
+        Prestamo prestamo = new Prestamo(libros, usuario, EstadoPrestamo.PRESTADO);
         PrestamoDAO prestamoDAO = new PrestamoDAO();
         Boolean resultado = prestamoDAO.insert(prestamo);
         assertEquals(true, resultado);
     }
     
-//    public void testLiberarPrestamo(){
-//        Usuario usuario = new Usuario();
-//        Libro libro = new Libro();
-//        Prestamo prestamo = new Prestamo();
-//        PrestamoDAO prestamoDAO = new PrestamoDAO();
-//        Prestamo resultado = prestamoDAO.(prestamo);
-//        assertEquals(true, resultado);
-//    }
+    @Test
+    public void testLiberarPrestamo() throws Exception{
+        Usuario usuario = new Usuario("prueba", "contraseñafalsa");
+        Libro libro = new Libro("abc", "librofalso", "alguien 123", EstadoLibro.DISPONIBLE);
+        List<Libro> libros = new ArrayList<>();
+        libros.add(libro);
+        Prestamo prestamo = new Prestamo(libros, usuario, EstadoPrestamo.DEVUELTO);
+        PrestamoDAO prestamoDAO = new PrestamoDAO();
+        Prestamo prestamoLiberado = prestamoDAO.update(prestamo);
+        assertEquals(EstadoPrestamo.DEVUELTO, prestamoLiberado.getEstado());
+    }
 }

@@ -148,4 +148,19 @@ public class PrestamoDAO implements IPrestamo {
         return prestamos;
     }
 
+    @Override
+    public Prestamo getPrestamoById(Long id) throws Exception {
+        if (id==null){
+            return null;
+        }
+        
+        Prestamo prestamo;
+        try {
+             prestamo=em.find(Prestamo.class, id);
+        } catch (Exception e) {
+            throw new Exception("La busqueda no se pudo ejecutar:" + e);
+        }
+        return prestamo;
+    }
+
 }
