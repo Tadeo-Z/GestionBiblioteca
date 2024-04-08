@@ -91,6 +91,10 @@ public class UsuarioDAO implements IUsuario{
             return false;
         }
         
+        if (usuario.getNombre().isBlank()||usuario.getContrasena().isBlank()){
+            return false;
+        }
+        
         EntityTransaction transaction = null;
         try{
             transaction = em.getTransaction();            

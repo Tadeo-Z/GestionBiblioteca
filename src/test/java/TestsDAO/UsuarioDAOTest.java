@@ -201,7 +201,7 @@ public class UsuarioDAOTest {
     public void testDeleteUsuarioFuncional() throws Exception {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         Usuario usuario = new Usuario("TestName#3","TestPassWord#3");
-        assertTrue(usuarioDAO.insert(usuario));
+        assertTrue(usuarioDAO.delete(usuario));
     }
 
     @Test
@@ -215,7 +215,7 @@ public class UsuarioDAOTest {
     public void testDeleteUsuarioBlank() throws Exception {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         Usuario usuario = new Usuario("","");
-        assertFalse(usuarioDAO.insert(usuario));
+        assertFalse(usuarioDAO.delete(usuario));
     }
 
     @Test
