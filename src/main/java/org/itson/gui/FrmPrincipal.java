@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  * @author marco
  */
 public class FrmPrincipal extends javax.swing.JFrame {
-    
+
     /**
      * Creates new form FrmPrincipal
      */
@@ -103,17 +103,17 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void btnPrestarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrestarLibroActionPerformed
         // TODO add your handling code here:
-        
+
         try {
             FrmPrestarLibro frm;
             frm = new FrmPrestarLibro();
             frm.setVisible(true);
             this.dispose();
-            
+
         } catch (Exception ex) {
             Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_btnPrestarLibroActionPerformed
 
     private void btnDevolverLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDevolverLibroActionPerformed
@@ -123,7 +123,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             frm = new FrmDevolverLibro();
             frm.setVisible(true);
             this.dispose();
-            
+
         } catch (Exception ex) {
             Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }

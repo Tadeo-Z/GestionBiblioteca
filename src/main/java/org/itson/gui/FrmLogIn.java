@@ -3,18 +3,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package org.itson.gui;
+import org.itson.negocio.BibliotecarioNegocio;
+import Exceptions.NegocioException;
+import org.itson.dominio.Bibliotecario;
 
 /**
  *
  * @author marco
  */
 public class FrmLogIn extends javax.swing.JFrame {
-
+private BibliotecarioNegocio bibliotecarioNegocio;
     /**
      * Creates new form FrmLogIn
      */
     public FrmLogIn() {
         initComponents();
+        bibliotecarioNegocio = new BibliotecarioNegocio();
     }
 
     /**
@@ -29,9 +33,9 @@ public class FrmLogIn extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jTextFieldUsuario = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextFieldContrasenia = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jButtonIniciarSesion = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,39 +49,39 @@ public class FrmLogIn extends javax.swing.JFrame {
 
         jLabel2.setText("Contraseña");
 
-        jTextFieldContrasenia.addActionListener(new java.awt.event.ActionListener() {
+        jButtonIniciarSesion.setText("Iniciar sesion");
+        jButtonIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldContraseniaActionPerformed(evt);
+                jButtonIniciarSesionActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Iniciar sesion");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jLabel4.setText("Bibliotecario");
+
+        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jPasswordField1ActionPerformed(evt);
             }
         });
-
-        jLabel4.setText("jLabel4");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(166, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel1)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextFieldUsuario)
-                        .addComponent(jTextFieldContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(148, 148, 148))
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(jLabel4)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(166, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonIniciarSesion)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextFieldUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)))
+                .addGap(148, 148, 148))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,9 +95,9 @@ public class FrmLogIn extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextFieldContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(jButtonIniciarSesion)
                 .addContainerGap(78, Short.MAX_VALUE))
         );
 
@@ -104,13 +108,32 @@ public class FrmLogIn extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldUsuarioActionPerformed
 
-    private void jTextFieldContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldContraseniaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldContraseniaActionPerformed
+    private void jButtonIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarSesionActionPerformed
+       String nombreUsuario = jTextFieldUsuario.getText();
+        String contrasena = String.valueOf(jPasswordField1.getPassword());
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            Bibliotecario bibliotecario = bibliotecarioNegocio.getBibliotecarioByName(nombreUsuario);
+            if (bibliotecario != null && bibliotecario.getContrasena().equals(contrasena)) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso!");
+                // Cerrar el formulario actual (FrmLogIn)
+                this.dispose();
+                // Abrir el formulario FrmPrincipal
+                FrmPrincipal frmPrincipal = new FrmPrincipal();
+                frmPrincipal.setVisible(true);
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "Credenciales incorrectas");
+            }
+        } catch (NegocioException ex) {
+            javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
+        } catch (Exception ex) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Error al iniciar sesión: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_jButtonIniciarSesionActionPerformed
+
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,11 +171,11 @@ public class FrmLogIn extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonIniciarSesion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextFieldContrasenia;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextFieldUsuario;
     // End of variables declaration//GEN-END:variables
 }
