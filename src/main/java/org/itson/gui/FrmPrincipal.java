@@ -4,6 +4,8 @@
  */
 package org.itson.gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -49,6 +51,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jPanel1.add(btnRegistrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, 180, 40));
 
         btnEditarUsuario.setText("Editar Uasuario");
+        btnEditarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarUsuarioActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnEditarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 180, 40));
 
         btnPrestarLibro.setText("Prestar Libro");
@@ -132,6 +139,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void btnBuscarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarLibroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscarLibroActionPerformed
+
+    private void btnEditarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarUsuarioActionPerformed
+
+        FrmEditar frmEditar = new FrmEditar();
+        frmEditar.setVisible(true);
+    }//GEN-LAST:event_btnEditarUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
