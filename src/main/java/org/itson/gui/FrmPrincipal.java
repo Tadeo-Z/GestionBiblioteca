@@ -130,7 +130,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDevolverLibroActionPerformed
 
     private void btnBuscarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarLibroActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        frmBuscarLibro frmBuscarL = new frmBuscarLibro();
+        frmBuscarL.setVisible(true);
+        
     }//GEN-LAST:event_btnBuscarLibroActionPerformed
 
     /**

@@ -10,6 +10,7 @@ import org.itson.dominio.Libro;
 import java.util.ArrayList;
 import java.util.List;
 import org.itson.dominio.EstadoLibro;
+import org.itson.dominio.Usuario;
 /**
  *
  * @author
@@ -44,6 +45,10 @@ public class LibroNegocio {
         return true;
     }
     
+    public List<Libro> obtenerTodosLosLibros() throws Exception{
+        return libroDAO.getAll();
+    }
+    
     public List<Libro> obtenerLibrosDisponibles() throws Exception{
         
         List<Libro> librosDisponibles = new ArrayList<>();
@@ -51,8 +56,20 @@ public class LibroNegocio {
         return librosDisponibles = libroDAO.getLibrosByDisponibilidad(EstadoLibro.DISPONIBLE);
     }
     
+    public List<Libro> obtenerLibrosPrestados(Usuario usuario) throws Exception{
+        return libroDAO.getLibrosPrestadosByUsuario(usuario);
+    }
+    
     public Libro obtenerLibroISBN(String isbn)throws Exception{
         return libroDAO.getLibroByISBN(isbn);
     }
+    
+    public List<Libro> obtenerLibroAutor(String autor) throws Exception{
+        return libroDAO.getLibrosByAutor(autor);
+    }
 
+    public List<Libro> obtenerLibroTitulo(String titulo) throws Exception{
+        return libroDAO.getLibrosByTitulo(titulo);
+    }
+    
 }
