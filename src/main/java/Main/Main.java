@@ -26,6 +26,7 @@ import org.itson.interfaces.IUsuario;
 import org.itson.negocio.UsuarioNegocio;
 import org.itson.dao.*;
 import org.itson.dominio.*;
+import org.itson.gui.FrmLogIn;
 import org.itson.interfaces.*;
 import org.itson.negocio.*;
 
@@ -40,35 +41,9 @@ public class Main {
      */
     public static void main(String[] args) throws Exception {
         
-        EntityManagerFactory emf =Conexion.getConexion();
-        EntityManager em = emf.createEntityManager();
+        FrmLogIn login = new FrmLogIn();
         
-        UsuarioDAO udao = new UsuarioDAO();
-        Usuario usuario = udao.getUsuarioById(13L);
-        PrestamoDAO pdao = new PrestamoDAO();
-        LibroDAO ldao = new LibroDAO();
- 
-        
-        Libro libroObtenido = ldao.getLibroById(3L);
-        List<Libro> libros = new ArrayList<>();
-        
-        Prestamo prestamoIngresar = new Prestamo(libros, usuario, EstadoPrestamo.PRESTADO);
-        pdao.insert(prestamoIngresar);
-
-        
-
-
-
-//        PrestamoNegocio pne = new PrestamoNegocio();
-//        pdao.insert(prestamoPrueba);
-//        UsuarioDAO usuarioDAO = new UsuarioDAO();
-//        Usuario usuario = usuarioDAO.getUsuarioByName("TestName#1");
-//        System.out.println(usuario);
-//        Encriptador encrypter = new Encriptador();
-//        System.out.println(encrypter.decrypt("h4O8svGMXLu2lf2zs8xbjw=="));
-//
-//        ISesionManager sesionManager = new SesionManager();
-//        System.out.println(sesionManager.autenticarUsuario("TestName#1", "TestPassword#1")); // Usuario registrado, Contraseña correcta
+        login.setVisible(true);
 
     }
 
